@@ -135,7 +135,7 @@ public class Second implements Filter {
 	</welcome-file-list>
 	<servlet>
 		<servlet-name>First</servlet-name>
-		<servlet-class me.smitpatel.First</servlet-class>
+		<servlet-class> me.smitpatel.First</servlet-class>
 		<load-on-startup>0</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -169,11 +169,28 @@ public class Second implements Filter {
 </body>
 </html>
 
-**********************Second.jsp :-************************
+/**********************Second.jsp :-************************/
+/***********************************************************/
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+</head>
+<body>
+	
+</body>
+</html>
+
+/**********************Home.jsp :-************************/
+/***********************************************************/
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+   <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
