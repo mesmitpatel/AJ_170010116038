@@ -1,0 +1,130 @@
+/*******************Q1****************/
+/*************************************/
+//1. What line of code would you need to load the driver which translates Java Database Connectivity commands into MySql Connectivity specification?
+
+Class.forName("com.mysql.jdbc.Driver");
+
+
+
+
+/*******************Q2****************/
+/*************************************/
+//2. Write a line of code returning a Connection object named, adit_conn_ENROLLMENTNUMBER, given the url, jdbc:mysql://localhost:3306/2160707_ENROLLMENTNUMBER, a password, ENROLLMENTNUMBER, and a login name root.
+
+Connection adit_conn_170010116038 = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/2160707_170010116038", "root", "170010116038");
+
+
+
+
+
+/*******************Q3****************/
+/*************************************/
+//3. Given a connection object called, adit_conn_ENROLLMENTNUMBER, what line of code would return a Statement object named, adit_conn_dState?
+
+Statement adit_conn_dState = adit_conn_170010116038.createStatement();
+
+
+
+
+
+/*******************Q4****************/
+/*************************************/
+//4. What single or pair of statements would create a 4 columns table, the first column called RECORD ( sql type INT ) , the second column called DESCRIPTION
+//( sql type VARCHAR, maximum 16 characters ), the third column labelled QUANTITY
+//( sql type INT ) and the forth column called PRICE (sql type FLOAT), given a statement object dState?
+
+String query = "create table JDBC_tbl(RECORD INT, DESCRIPTION VARCHAR(16), QUANTITY INT, PRICE FLOAT)";
+adit_conn_dState.execute(query);
+
+
+
+
+
+/*******************Q5****************/
+/*************************************/
+//5. In the table created in Q.4, write jdbc code to insert 4 fictitious records.( one fictitious record example might have the values that appear in a table as follows: 100 ball 28 4.99 )
+    
+String query1,query2,query3,query4;
+query1 = "insert into JDBC_tbl values(1,'pen',22,1.99)";
+query2 = "insert into JDBC_tbl values(2,'pencil',40,4.95)";
+query3 = "insert into JDBC_tbl values(3,'eraser',23,9.93)";
+query4 = "insert into JDBC_tbl values(4,'notebook',15,55.33)";
+adit_conn_dState.addBatch(query1);
+adit_conn_dState.addBatch(query2);
+adit_conn_dState.addBatch(query3);
+adit_conn_dState.addBatch(query4);
+int[] i=adit_conn_dState.executeBatch();
+
+
+
+
+
+
+/*******************Q6****************/
+/*************************************/
+//6. What SQL statement would return the prices of the four record items?
+
+String sql = "select PRICE from JDBC_tbl";
+
+
+
+
+
+
+/*******************Q7****************/
+/*************************************/
+//7. Return the the result of SQL statement in Q.6 as a ResultSet object using dState as the statement object and dResult as the name of the ResultSet object.
+
+ResultSet dResult;
+dResult = adit_conn_dState.executeQuery(sql);
+while(dResult.next()){
+    System.out.println(dResult.getFloat("PRICE"));
+}
+
+
+
+
+
+/*******************Q8****************/
+/*************************************/
+//8. getXXX( ) methods can access columns by _________ or_________ (Put the more efficient first).
+
+getXXX( ) methods can access columns by index or name (Put the more efficient first).
+
+
+
+
+
+
+/*******************Q9****************/
+/*************************************/
+//9. T/F getInt( ) can be used to retrieve sql INTEGER and BINARY types.
+
+False
+
+
+
+
+
+
+/*******************Q10****************/
+/*************************************/
+//10. In the getXXX( ) methods table at the end of the JDBC Basics tutorial, a) what do the small x's refer to? b) the large X's?
+
+x indicates the getXXX method may legally be used to retrieve the given JDBC type.
+X indicates the getXXX method is recommended for retrieving the given JDBC type.
+
+
+
+
+
+
+
+/*******************Q11****************/
+/*************************************/
+//11. Write a String called newSale containing the SQL statements needed to update the tutorial's
+//COFFEES table in order to set SALES for Expresso to 150. Given a Statement object called sT,
+//write JDBC code to update COFFEES with the new information in newSale.
+
+String newsale = "UPDATE COFFEES SET SALES=150 where COF_NAME='Expresso'";
+int i = st.executeUpdate(newsale);
